@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">RackMovies</string>
+    <string name="tab_text_1">Movie</string>
+    <string name="tab_text_2">TV Show</string>
+    <string name="image_recyclerview">Image Recycler</string>
+    <string name="title_movies">Title Movies</string>
+    <string name="genre">genre</string>
+    <string name="overview">Overview</string>
+    <string name="date">date</string>
+    <string name="date_release">Date Released</string>
+    <string name="lang">language</string>
+    <string name="favorite">Favorite</string>
+    <string name="empty_list">Empty List</string>
+    <string name="added_to_favorite">Added to favorite</string>
+    <string name="removed_from_favorite">Removed from favorite</string>
+    <string name="change_language">Change Language</string>
+    <string name="daily_reminder">Daily reminder</string>
+    <string name="detail_text_remider">Reminder showing the movie that released today at 8 AM</string>
+    <string name="open_reminder">Open Reminder</string>
+    <string name="release_reminder">Release Reminder</string>
+    <string name="search">search</string>
+    <string name="search_movie">Search movie ...</string>
+    <string name="search_tv_show">Search tv show ...</string>
+    <string name="favorit_movie">Favorit Movie</string>
+    <string name="come_back">Come back to the app.</string>
+    <string name="has_released">has released today.</string>
+    <string name="new_release">New Movie Release</string>
+    <string name="Setting">Setting</string>
+
+</resources>

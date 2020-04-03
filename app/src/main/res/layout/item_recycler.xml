@@ -1,0 +1,67 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview_wrapper"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/sixteen"
+    android:layout_marginTop="@dimen/eight"
+    android:layout_marginRight="@dimen/sixteen"
+    android:layout_marginBottom="@dimen/eight"
+    android:orientation="vertical"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_poster"
+                android:layout_width="120dp"
+                android:layout_height="170dp"
+                android:background="@color/colorWhite"
+                android:contentDescription="@string/image_recyclerview" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/sixteen"
+            android:paddingTop="@dimen/eight"
+            android:paddingRight="@dimen/sixteen"
+            android:paddingBottom="@dimen/eight">
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/title_movies"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/eight"
+                android:text="@string/date"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+            <TextView
+                android:id="@+id/tvDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sixteen"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="@string/overview" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.fahrul.rackmovies.MainActivityMainActivity">
+    <item
+        android:id="@+id/menu_search"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+    <group android:menuCategory="container">
+        <item
+            android:id="@+id/icFavorite"
+            app:showAsAction="ifRoom"
+            android:icon="@drawable/ic_favorite_black_24dp"
+            android:title="@string/favorit"/>
+
+        <item
+            android:id="@+id/ic_Language"
+            android:title="@string/change_language"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/ic_Reminder"
+            android:title="@string/open_reminder"
+            app:showAsAction="never"/>
+    </group>
+</menu>

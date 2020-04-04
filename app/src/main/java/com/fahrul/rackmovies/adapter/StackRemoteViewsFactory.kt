@@ -6,11 +6,11 @@ import android.util.Log
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.bumptech.glide.Glide
-import com.fahrul.rackmovies.ui.AppWidget
 import com.fahrul.rackmovies.R
 import com.fahrul.rackmovies.api.ApiClient
 import com.fahrul.rackmovies.model.Movie
 import com.fahrul.rackmovies.model.lokal.FavoriteDatabase
+import com.fahrul.rackmovies.ui.AppWidget
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -39,7 +39,7 @@ class StackRemoteViewsFactory(val context: Context) :
         GlobalScope.launch {
             val list = favoriteDatabase?.movieDao()?.getMovies()
 
-            if (list != null){
+            if (list != null) {
                 movieList.clear()
                 movieList.addAll(list)
             }

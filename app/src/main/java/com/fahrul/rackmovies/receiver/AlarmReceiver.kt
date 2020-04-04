@@ -60,7 +60,8 @@ class AlarmReceiver : BroadcastReceiver() {
                 apiService.getReleaseMovie(apiKey, currentDate, currentDate).enqueue(object :
                     Callback<MovieList> {
                     override fun onFailure(call: Call<MovieList>, t: Throwable) {
-                        Toast.makeText(context, "Failed connect to server", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, "Failed connect to server", Toast.LENGTH_LONG)
+                            .show()
                     }
 
                     override fun onResponse(call: Call<MovieList>, response: Response<MovieList>) {
@@ -89,13 +90,22 @@ class AlarmReceiver : BroadcastReceiver() {
         }
     }
 
-    private fun showNotification(context: Context, title: String, message: String, notifyId: Int, idMovie: String?) {
+    private fun showNotification(
+        context: Context,
+        title: String,
+        message: String,
+        notifyId: Int,
+        idMovie: String?
+    ) {
         val channelId = "Channel_1"
         val channelName = "AlarmManager Channel"
 
-        val intent = if (idMovie != null){
-            Intent(context, DetailMoviesActivity::class.java).putExtra(DetailMoviesActivity.EXTRA_ID_STRING, idMovie)
-        }else{
+        val intent = if (idMovie != null) {
+            Intent(
+                context,
+                DetailMoviesActivity::class.java
+            ).putExtra(DetailMoviesActivity.EXTRA_ID_STRING, idMovie)
+        } else {
             Intent(context, MainActivity::class.java)
         }
 

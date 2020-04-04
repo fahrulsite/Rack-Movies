@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.fahrul.rackmovies.util.Constants
 import com.fahrul.rackmovies.model.Movie
 import com.fahrul.rackmovies.model.TV
+import com.fahrul.rackmovies.util.Constants
 
-@Database(entities =  [Movie::class, TV::class], version = 1)
-abstract  class FavoriteDatabase :RoomDatabase() {
+@Database(entities = [Movie::class, TV::class], version = 1)
+abstract class FavoriteDatabase : RoomDatabase() {
     abstract fun movieDao(): DatabaseDAO.FavoriteMovie
     abstract fun tvShowDao(): DatabaseDAO.FavoriteTvShow
 
@@ -23,7 +23,8 @@ abstract  class FavoriteDatabase :RoomDatabase() {
                         INSTANCE = Room.databaseBuilder(
                                 context.applicationContext,
                                 FavoriteDatabase::class.java,
-                                Constants.DB_NAME)
+                                Constants.DB_NAME
+                            )
                             .build()
                     }
                 }
@@ -32,7 +33,7 @@ abstract  class FavoriteDatabase :RoomDatabase() {
             return INSTANCE
         }
 
-        fun destroyInstance(){
+        fun destroyInstance() {
             INSTANCE = null
         }
 

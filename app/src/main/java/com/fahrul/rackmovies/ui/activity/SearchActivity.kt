@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var movieDataViewModel: MovieDataViewModel
-    private var type: String?= null
+    private var type: String? = null
     private var query: String? = null
     private var loadData: Unit? = null
 
@@ -29,7 +29,7 @@ class SearchActivity : AppCompatActivity() {
 
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
-        movieDataViewModel= ViewModelProvider(
+        movieDataViewModel = ViewModelProvider(
             this,
             ViewModelFactory().viewModelFactory { MovieDataViewModel(this) }).get(
             MovieDataViewModel::class.java
@@ -72,7 +72,7 @@ class SearchActivity : AppCompatActivity() {
             if (list.isNotEmpty()) {
                 rvAdapter.setData(list)
                 isNotFound(false)
-            }else{
+            } else {
                 isNotFound(true)
             }
         })
@@ -105,11 +105,11 @@ class SearchActivity : AppCompatActivity() {
         })
     }
 
-    private fun isNotFound(boolean: Boolean){
-        if (boolean){
+    private fun isNotFound(boolean: Boolean) {
+        if (boolean) {
             rvSearch.visibility = View.GONE
             tvEmpty.visibility = View.VISIBLE
-        }else{
+        } else {
             rvSearch.visibility = View.VISIBLE
             tvEmpty.visibility = View.GONE
         }

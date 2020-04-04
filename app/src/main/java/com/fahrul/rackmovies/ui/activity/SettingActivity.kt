@@ -20,6 +20,7 @@ class SettingActivity : AppCompatActivity() {
         const val DAILY_REMINDER = "daily_reminder"
         const val RELEASE_REMINDER = "release_reminder"
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
@@ -76,6 +77,7 @@ class SettingActivity : AppCompatActivity() {
             editor.apply()
         }
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {

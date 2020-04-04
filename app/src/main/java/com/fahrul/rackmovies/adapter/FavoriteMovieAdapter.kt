@@ -1,13 +1,14 @@
 package com.fahrul.rackmovies.adapter
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.fahrul.rackmovies.model.Movie
 import com.fahrul.rackmovies.R
 import com.fahrul.rackmovies.api.ApiClient
+import com.fahrul.rackmovies.model.Movie
 import kotlinx.android.synthetic.main.item_recycler.view.*
 
 class FavoriteMovieAdapter(private val context: Context?) :

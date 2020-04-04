@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.fahrul.rackmovies.model.TV
 import com.fahrul.rackmovies.R
 import com.fahrul.rackmovies.api.ApiClient
+import com.fahrul.rackmovies.model.TV
 import kotlinx.android.synthetic.main.item_recycler.view.*
 
 class FavoriteTVAdapter(private val context: Context?) :

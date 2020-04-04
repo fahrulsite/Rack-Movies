@@ -82,7 +82,8 @@ class AppWidget : AppWidgetProvider() {
                     widgetManager.getAppWidgetIds(ComponentName(context, AppWidget::class.java))
 
                 for (widgetId in widgetIds) {
-                    widgetManager.notifyAppWidgetViewDataChanged(widgetId,
+                    widgetManager.notifyAppWidgetViewDataChanged(
+                        widgetId,
                         R.id.stack_view
                     )
                 }

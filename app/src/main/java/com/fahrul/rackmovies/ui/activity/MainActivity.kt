@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
                     val intent = Intent(this@MainActivity, SearchActivity::class.java)

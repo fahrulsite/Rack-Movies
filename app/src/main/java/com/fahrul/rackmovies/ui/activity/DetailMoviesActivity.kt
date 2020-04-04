@@ -59,9 +59,9 @@ class DetailMoviesActivity : AppCompatActivity() {
         checkFavorite(filmId)
 
         btnFav.setOnClickListener {
-            if (isFavorite){
+            if (isFavorite) {
                 movieDetailViewModel.deleteFavoriteMovie(movieModel.id)
-            }else{
+            } else {
                 movieDetailViewModel.setFavoriteMovie(movieModel)
                 showMessage(getString(R.string.added_to_favorite))
             }

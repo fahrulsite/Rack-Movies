@@ -7,10 +7,10 @@ import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 import android.util.Log
-import com.fahrul.rackmovies.util.Constants
 import com.fahrul.rackmovies.model.lokal.FavoriteDatabase
+import com.fahrul.rackmovies.util.Constants
 
-class FavoriteProvider:ContentProvider() {
+class FavoriteProvider : ContentProvider() {
     companion object {
         private var favoriteDatabase: FavoriteDatabase? = null
 

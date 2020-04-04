@@ -4,17 +4,17 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.fahrul.rackmovies.api.ApiClient
 import com.fahrul.rackmovies.model.Movie
 import com.fahrul.rackmovies.model.TV
 import com.fahrul.rackmovies.model.lokal.FavoriteDatabase
-import com.fahrul.rackmovies.api.ApiClient
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MovieDetailViewModel(val context: Context, val id:String) :ViewModel() {
+class MovieDetailViewModel(val context: Context, val id: String) : ViewModel() {
     companion object {
         private val TAG = MovieDataViewModel::class.java.simpleName
     }
@@ -88,7 +88,7 @@ class MovieDetailViewModel(val context: Context, val id:String) :ViewModel() {
 
     internal fun checkIsFavoriteTvShow(id: String): LiveData<Boolean> {
         GlobalScope.launch {
-            if (favoriteDatabase?.tvShowDao()?.getTvShow(id) != null){
+            if (favoriteDatabase?.tvShowDao()?.getTvShow(id) != null) {
                 isFavorite.postValue(true)
             }
         }
@@ -110,14 +110,14 @@ class MovieDetailViewModel(val context: Context, val id:String) :ViewModel() {
         }
     }
 
-    internal fun deleteFavoriteMovie(id: String){
+    internal fun deleteFavoriteMovie(id: String) {
         GlobalScope.launch {
             favoriteDatabase?.movieDao()?.deleteMovie(id)
             isFavorite.postValue(false)
         }
     }
 
-    internal fun deleteFavoriteTvShow(id: String){
+    internal fun deleteFavoriteTvShow(id: String) {
         GlobalScope.launch {
             favoriteDatabase?.tvShowDao()?.deleteTvShow(id)
             isFavorite.postValue(false)

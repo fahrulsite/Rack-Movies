@@ -3,12 +3,12 @@ package com.fahrul.rackmovies.viewmodel
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.fahrul.rackmovies.api.ApiClient
 import com.fahrul.rackmovies.model.Movie
 import com.fahrul.rackmovies.model.MovieList
 import com.fahrul.rackmovies.model.TV
 import com.fahrul.rackmovies.model.TVList
 import com.fahrul.rackmovies.model.lokal.FavoriteDatabase
-import com.fahrul.rackmovies.api.ApiClient
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Call

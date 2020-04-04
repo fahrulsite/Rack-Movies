@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Consumer Rack Movies</string>
+    <string name="image_recycler">Image Recycler</string>
+    <string name="title">Title</string>
+    <string name="date">Date</string>
+    <string name="overview">Overview</string>
+</resources>

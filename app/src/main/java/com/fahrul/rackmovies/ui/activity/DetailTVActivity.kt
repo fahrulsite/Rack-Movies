@@ -59,9 +59,9 @@ class DetailTVActivity : AppCompatActivity() {
         checkFavorite(filmId)
 
         btnFav.setOnClickListener {
-            if (isFavorite){
+            if (isFavorite) {
                 tvDetailViewModel.deleteFavoriteTvShow(tvModel.id)
-            }else{
+            } else {
                 tvDetailViewModel.setFavoriteTvShow(tvModel)
                 showMessage(getString(R.string.added_to_favorite))
             }

@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.fahrul.rackmovies.Helper
 import com.fahrul.rackmovies.R
-import com.fahrul.rackmovies.api.ApiClient
-import com.fahrul.rackmovies.model.TV
-import com.fahrul.rackmovies.util.ViewModelFactory
+import com.fahrul.rackmovies.lokal.TV
+import com.fahrul.rackmovies.viewmodel.ViewModelFactory
 import com.fahrul.rackmovies.viewmodel.MovieDetailViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_detail_tv.*
@@ -37,7 +37,8 @@ class DetailTVActivity : AppCompatActivity() {
 
         tvDetailViewModel = ViewModelProvider(
             this,
-            ViewModelFactory().viewModelFactory { MovieDetailViewModel(this, filmId) }).get(
+            ViewModelFactory()
+                .viewModelFactory { MovieDetailViewModel(this, filmId) }).get(
             MovieDetailViewModel::class.java
         )
 
@@ -49,7 +50,7 @@ class DetailTVActivity : AppCompatActivity() {
             }
 
             Glide.with(this)
-                .load(ApiClient.POSTER_URL + tvModel.poster_path)
+                .load(Helper.POSTER_URL + tvModel.poster_path)
                 .into(img_poster)
 
             tvName.text = tvModel.name
@@ -61,6 +62,7 @@ class DetailTVActivity : AppCompatActivity() {
         btnFav.setOnClickListener {
             if (isFavorite) {
                 tvDetailViewModel.deleteFavoriteTvShow(tvModel.id)
+                showMessage(getString(R.string.removed_from_favorite))
             } else {
                 tvDetailViewModel.setFavoriteTvShow(tvModel)
                 showMessage(getString(R.string.added_to_favorite))

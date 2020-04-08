@@ -1,14 +1,14 @@
-package com.fahrul.rackmovies.model
+package com.fahrul.rackmovies.lokal
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.fahrul.rackmovies.util.Constants
+import com.fahrul.rackmovies.Helper
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-@Entity(tableName = Constants.TABLE_TV_SHOW)
+@Entity(tableName = Helper.TABLE_TV_SHOW)
 data class TV(
     @PrimaryKey
     @ColumnInfo

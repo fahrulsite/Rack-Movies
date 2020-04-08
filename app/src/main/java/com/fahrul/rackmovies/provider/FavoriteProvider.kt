@@ -7,12 +7,12 @@ import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 import android.util.Log
-import com.fahrul.rackmovies.model.lokal.FavoriteDatabase
-import com.fahrul.rackmovies.util.Constants
+import com.fahrul.rackmovies.lokal.FavoriteDb
+import com.fahrul.rackmovies.Helper
 
 class FavoriteProvider : ContentProvider() {
     companion object {
-        private var favoriteDatabase: FavoriteDatabase? = null
+        private var favoriteDb: FavoriteDb? = null
 
         private const val MOVIE = 10
         private const val MOVIE_ID = 11
@@ -23,16 +23,16 @@ class FavoriteProvider : ContentProvider() {
         private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 
         init {
-            uriMatcher.addURI(Constants.AUTHORITY, Constants.TABLE_MOVIE, MOVIE)
-            uriMatcher.addURI(Constants.AUTHORITY, "${Constants.TABLE_MOVIE}/#", MOVIE_ID)
+            uriMatcher.addURI(Helper.AUTHORITY, Helper.TABLE_MOVIE, MOVIE)
+            uriMatcher.addURI(Helper.AUTHORITY, "${Helper.TABLE_MOVIE}/#", MOVIE_ID)
 
-            uriMatcher.addURI(Constants.AUTHORITY, Constants.TABLE_TV_SHOW, TV_SHOW)
-            uriMatcher.addURI(Constants.AUTHORITY, "${Constants.TABLE_TV_SHOW}/#", TV_SHOW_ID)
+            uriMatcher.addURI(Helper.AUTHORITY, Helper.TABLE_TV_SHOW, TV_SHOW)
+            uriMatcher.addURI(Helper.AUTHORITY, "${Helper.TABLE_TV_SHOW}/#", TV_SHOW_ID)
         }
     }
 
     override fun onCreate(): Boolean {
-        favoriteDatabase = FavoriteDatabase.getInstance(context!!)
+        favoriteDb = FavoriteDb.getInstance(context!!)
 
         return true
     }
@@ -44,16 +44,16 @@ class FavoriteProvider : ContentProvider() {
         return when (uriMatcher.match(uri)) {
             MOVIE -> {
                 Log.d("myProvider", "getting query")
-                favoriteDatabase?.movieDao()?.getMoviesCursor()
+                favoriteDb?.movieDao()?.getMoviesCursor()
             }
 
-            MOVIE_ID -> favoriteDatabase?.movieDao()?.getMoviesCursor(
+            MOVIE_ID -> favoriteDb?.movieDao()?.getMoviesCursor(
                 ContentUris.parseId(uri).toString()
             )
 
-            TV_SHOW -> favoriteDatabase?.tvShowDao()?.getTvShowCursor()
+            TV_SHOW -> favoriteDb?.tvShowDao()?.getTvShowCursor()
 
-            TV_SHOW_ID -> favoriteDatabase?.tvShowDao()?.getTvShowCursor(
+            TV_SHOW_ID -> favoriteDb?.tvShowDao()?.getTvShowCursor(
                 ContentUris.parseId(uri).toString()
             )
 

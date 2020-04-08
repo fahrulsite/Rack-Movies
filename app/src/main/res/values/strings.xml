@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">RackMovies</string>
-    <string name="tab_text_1">Film</string>
-    <string name="tab_text_2">TV</string>
+    <string name="movie">Film</string>
+    <string name="tv">TV</string>
     <string name="image_recyclerview">Gambar Recycler</string>
     <string name="title_movies">Judul Movies</string>
     <string name="genre">genre</string>
@@ -9,7 +9,6 @@
     <string name="date">tanggal</string>
     <string name="date_release">Tanggal Rilis</string>
     <string name="lang">bahasa</string>
-    <string name="favorit" translatable="false">Favorit</string>
     <string name="favorite">Disukai</string>
     <string name="empty_list">Daftar Kosong</string>
     <string name="added_to_favorite">Berhasil menambahkan di favorit</string>
@@ -25,9 +24,13 @@
     <string name="has_released">ada film baru sekarang</string>
     <string name="release_reminder">Release Reminder</string>
     <string name="detail_text_remider">Menampilkan update baru setiap jam 8 pagi</string>
-    <string name="add_widget">Add widget</string>
     <string name="favorit_movie">Favorit Movie</string>
     <string name="Setting">Setting</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="judul_movie">Judul Movie</string>
+    <string name="judulTV">Judul TV</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

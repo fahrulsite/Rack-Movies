@@ -11,10 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fahrul.rackmovies.R
 import com.fahrul.rackmovies.adapter.FavoriteTVAdapter
-import com.fahrul.rackmovies.model.TV
+import com.fahrul.rackmovies.lokal.TV
 import com.fahrul.rackmovies.ui.activity.DetailTVActivity
-import com.fahrul.rackmovies.util.ViewModelFactory
-import com.fahrul.rackmovies.viewmodel.MovieDataViewModel
+import com.fahrul.rackmovies.viewmodel.ViewModelFactory
+import com.fahrul.rackmovies.viewmodel.DataViewModel
 import kotlinx.android.synthetic.main.fragment_favorite_tv.*
 
 /**
@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_favorite_tv.*
  */
 class FavoriteTvFragment : Fragment() {
 
-    private lateinit var movieDataViewModel: MovieDataViewModel
+    private lateinit var dataViewModel: DataViewModel
     private lateinit var rvAdapter: FavoriteTVAdapter
 
     override fun onCreateView(
@@ -35,7 +35,7 @@ class FavoriteTvFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        movieDataViewModel.getFavoriteTvShowList().observe(this, Observer { list ->
+        dataViewModel.getFavoriteTV().observe(this, Observer { list ->
             if (list != null) {
                 if (list.isNotEmpty()) tvEmpty.visibility = View.GONE
                 rvAdapter.setData(list)
@@ -46,10 +46,10 @@ class FavoriteTvFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        movieDataViewModel = ViewModelProvider(
+        dataViewModel = ViewModelProvider(
             this,
-            ViewModelFactory().viewModelFactory { MovieDataViewModel(context!!) }).get(
-            MovieDataViewModel::class.java
+            ViewModelFactory().viewModelFactory { DataViewModel(context!!) }).get(
+            DataViewModel::class.java
         )
 
         rvAdapter = FavoriteTVAdapter(context)

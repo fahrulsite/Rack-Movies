@@ -8,20 +8,12 @@
         android:title="@string/search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView" />
-    <group android:menuCategory="container">
-        <item
-            android:id="@+id/icFavorite"
-            app:showAsAction="ifRoom"
-            android:icon="@drawable/ic_favorite_black_24dp"
-            android:title="@string/favorit"/>
+    <item
+        android:id="@+id/icSetting"
+        app:showAsAction="never"
+        android:title="@string/Setting"/>
 
-        <item
-            android:id="@+id/ic_Language"
-            android:title="@string/change_language"
-            app:showAsAction="never"/>
-        <item
-            android:id="@+id/ic_Reminder"
-            android:title="@string/open_reminder"
-            app:showAsAction="never"/>
-    </group>
+    <item android:id="@+id/icLanguage"
+        android:title="@string/lang"
+        app:showAsAction="never"/>
 </menu>

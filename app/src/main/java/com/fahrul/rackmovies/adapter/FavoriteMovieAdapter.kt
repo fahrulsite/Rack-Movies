@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.fahrul.rackmovies.Helper
 import com.fahrul.rackmovies.R
 import com.fahrul.rackmovies.api.ApiClient
-import com.fahrul.rackmovies.model.Movie
+import com.fahrul.rackmovies.lokal.Movie
 import kotlinx.android.synthetic.main.item_recycler.view.*
 
 class FavoriteMovieAdapter(private val context: Context?) :
@@ -50,7 +51,7 @@ class FavoriteMovieAdapter(private val context: Context?) :
         fun bind(movie: Movie) {
             with(view) {
                 Glide.with(context)
-                    .load(ApiClient.POSTER_URL + movie.poster_path)
+                    .load(Helper.POSTER_URL + movie.poster_path)
                     .into(img_poster)
                 tvName.text = movie.title
                 tvDate.text = movie.release_date

@@ -9,7 +9,7 @@ class DatabaseContract {
             private const val AUTHORITY = "com.fahrul.rackmovies"
             private const val SCHEME = "content"
 
-            private const val TABLE_NAME = "favorite_movie"
+            private const val TABLE_NAME = "favMovie"
             const val ID = "id"
             const val TITLE = "title"
             const val POSTER_PATH = "poster_path"

@@ -1,8 +1,8 @@
 package com.fahrul.rackmovies.api
 
-import com.fahrul.rackmovies.model.Movie
+import com.fahrul.rackmovies.lokal.Movie
 import com.fahrul.rackmovies.model.MovieList
-import com.fahrul.rackmovies.model.TV
+import com.fahrul.rackmovies.lokal.TV
 import com.fahrul.rackmovies.model.TVList
 import retrofit2.Call
 import retrofit2.http.GET

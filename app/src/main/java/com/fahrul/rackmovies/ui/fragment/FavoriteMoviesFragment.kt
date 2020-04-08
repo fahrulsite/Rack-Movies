@@ -12,17 +12,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fahrul.rackmovies.R
 import com.fahrul.rackmovies.adapter.FavoriteMovieAdapter
-import com.fahrul.rackmovies.model.Movie
+import com.fahrul.rackmovies.lokal.Movie
 import com.fahrul.rackmovies.ui.activity.DetailMoviesActivity
-import com.fahrul.rackmovies.util.ViewModelFactory
-import com.fahrul.rackmovies.viewmodel.MovieDataViewModel
+import com.fahrul.rackmovies.viewmodel.ViewModelFactory
+import com.fahrul.rackmovies.viewmodel.DataViewModel
 import kotlinx.android.synthetic.main.fragment_favorite_movies.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class FavoriteMoviesFragment : Fragment() {
-    private lateinit var movieDataViewModel: MovieDataViewModel
+    private lateinit var dataViewModel: DataViewModel
     private lateinit var rvAdapter: FavoriteMovieAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,10 +35,10 @@ class FavoriteMoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        movieDataViewModel = ViewModelProvider(
+        dataViewModel = ViewModelProvider(
             this,
-            ViewModelFactory().viewModelFactory { MovieDataViewModel(context!!) }).get(
-            MovieDataViewModel::class.java
+            ViewModelFactory().viewModelFactory { DataViewModel(context!!) }).get(
+            DataViewModel::class.java
         )
 
         rvAdapter = FavoriteMovieAdapter(context)
@@ -48,7 +48,7 @@ class FavoriteMoviesFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        movieDataViewModel.getFavoriteMovieList().observe(this, Observer { list ->
+        dataViewModel.getFavoriteMovie().observe(this, Observer { list ->
             if (list != null) {
                 if (list.isNotEmpty()) tvEmpty.visibility = View.GONE
                 rvAdapter.setData(list)

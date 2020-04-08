@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">RackMovies</string>
-    <string name="tab_text_1">Movie</string>
-    <string name="tab_text_2">TV Show</string>
+    <string name="movie">Movie</string>
+    <string name="tv">TV Show</string>
     <string name="image_recyclerview">Image Recycler</string>
     <string name="title_movies">Title Movies</string>
     <string name="genre">genre</string>
@@ -26,5 +26,7 @@
     <string name="has_released">has released today.</string>
     <string name="new_release">New Movie Release</string>
     <string name="Setting">Setting</string>
+    <string name="judul_movie">Judul Movie</string>
+    <string name="judulTV">Judul TV</string>
 
 </resources>

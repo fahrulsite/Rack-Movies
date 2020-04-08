@@ -29,8 +29,8 @@ class FavoriteActivity : AppCompatActivity() {
         )
 
         val titleList = listOf(
-            getString(R.string.tab_text_1),
-            getString(R.string.tab_text_2)
+            getString(R.string.movie),
+            getString(R.string.tv)
         )
 
         viewPager.adapter = ViewPagerAdapter(supportFragmentManager, fragmentList, titleList)

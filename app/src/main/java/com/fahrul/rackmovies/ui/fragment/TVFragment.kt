@@ -5,16 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fahrul.rackmovies.R
-import com.fahrul.rackmovies.adapter.TVAdapter
-import com.fahrul.rackmovies.model.TV
+import com.fahrul.rackmovies.adapter.DataTVAdapter
+import com.fahrul.rackmovies.lokal.TV
 import com.fahrul.rackmovies.ui.activity.DetailTVActivity
-import com.fahrul.rackmovies.util.ViewModelFactory
-import com.fahrul.rackmovies.viewmodel.MovieDataViewModel
+import com.fahrul.rackmovies.viewmodel.ViewModelFactory
+import com.fahrul.rackmovies.viewmodel.DataViewModel
 import kotlinx.android.synthetic.main.fragment_tv.*
 
 
@@ -22,48 +23,64 @@ import kotlinx.android.synthetic.main.fragment_tv.*
  * A simple [Fragment] subclass.
  */
 class TVFragment : Fragment() {
-    private lateinit var movieDataViewModel: MovieDataViewModel
+    private lateinit var dataViewModel: DataViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_tv, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        movieDataViewModel = ViewModelProvider(
+        dataViewModel = ViewModelProvider(
             this,
-            ViewModelFactory().viewModelFactory { MovieDataViewModel(context!!) }).get(
-            MovieDataViewModel::class.java
+            ViewModelFactory().viewModelFactory { DataViewModel(context!!) }).get(
+            DataViewModel::class.java
         )
 
         setList()
+        search()
         setSwipeRefresh()
     }
 
-    private fun setList() {
-        val rvAdapter = TVAdapter(context)
+    private fun search(){
+        btnSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null ){
+                    dataViewModel.setTvShow(query)
+                } else{
+                    dataViewModel.setTvShow(null)
+                }
+                return true
+            }
 
-        rvAdapter.setOnClickListener(object : TVAdapter.ClickListener {
+            override fun onQueryTextChange(query: String?):Boolean{
+                if (query != null ){
+                    dataViewModel.setTvShow(query)
+                } else{
+                    dataViewModel.setTvShow(null)
+                }
+                return true
+            }
+        })
+    }
+
+    private fun setList() {
+        val rvAdapter = DataTVAdapter(context)
+
+        rvAdapter.setOnClickListener(object : DataTVAdapter.ClickListener {
             override fun onItemClick(data: TV, v: View) {
                 val intent = Intent(context, DetailTVActivity::class.java)
                 intent.putExtra(DetailTVActivity.EXTRA_ID, data.id)
-
                 startActivity(intent)
             }
-
         })
 
-        rvTv.apply {
+        rvTV.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = rvAdapter
         }
 
-        movieDataViewModel.getTvShow(true).observe(this, Observer { list ->
+        dataViewModel.getDataTV(true).observe(this, Observer { list ->
             if (list.isNotEmpty()) {
                 rvAdapter.setData(list)
             }
@@ -71,14 +88,13 @@ class TVFragment : Fragment() {
     }
 
     private fun setSwipeRefresh() {
-        movieDataViewModel.isLoading.observe(this, Observer { loading ->
+        dataViewModel.isLoading.observe(this, Observer { loading ->
             swipeRefresh.isRefreshing = loading
         })
 
         swipeRefresh.setOnRefreshListener {
-            movieDataViewModel.setTvShow(null)
+            dataViewModel.setMovies(null)
         }
     }
-
 
 }

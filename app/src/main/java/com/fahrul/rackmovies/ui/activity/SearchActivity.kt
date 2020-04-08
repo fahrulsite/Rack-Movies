@@ -9,16 +9,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fahrul.rackmovies.R
-import com.fahrul.rackmovies.adapter.DataAdapter
-import com.fahrul.rackmovies.adapter.TVAdapter
-import com.fahrul.rackmovies.model.Movie
-import com.fahrul.rackmovies.model.TV
-import com.fahrul.rackmovies.util.ViewModelFactory
-import com.fahrul.rackmovies.viewmodel.MovieDataViewModel
+import com.fahrul.rackmovies.adapter.DataMovieAdapter
+import com.fahrul.rackmovies.adapter.DataTVAdapter
+import com.fahrul.rackmovies.lokal.Movie
+import com.fahrul.rackmovies.lokal.TV
+import com.fahrul.rackmovies.viewmodel.ViewModelFactory
+import com.fahrul.rackmovies.viewmodel.DataViewModel
 import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
-    private lateinit var movieDataViewModel: MovieDataViewModel
+    private lateinit var dataViewModel: DataViewModel
     private var type: String? = null
     private var query: String? = null
     private var loadData: Unit? = null
@@ -29,10 +29,10 @@ class SearchActivity : AppCompatActivity() {
 
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
-        movieDataViewModel = ViewModelProvider(
+        dataViewModel = ViewModelProvider(
             this,
-            ViewModelFactory().viewModelFactory { MovieDataViewModel(this) }).get(
-            MovieDataViewModel::class.java
+            ViewModelFactory().viewModelFactory { DataViewModel(this) }).get(
+            DataViewModel::class.java
         )
 
         query = intent?.getStringExtra(MainActivity.EXTRA_QUERY)
@@ -41,10 +41,10 @@ class SearchActivity : AppCompatActivity() {
         supportActionBar?.title = "$type : $query"
 
         if (type == MainActivity.TYPE_MOVIE) {
-            loadData = movieDataViewModel.setMovies(query)
+            loadData = dataViewModel.setMovies(query)
             setMovieList()
         } else {
-            loadData = movieDataViewModel.setTvShow(query)
+            loadData = dataViewModel.setTvShow(query)
             setTvShowList()
         }
 
@@ -52,9 +52,9 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun setTvShowList() {
-        val rvAdapter = TVAdapter(this)
+        val rvAdapter = DataTVAdapter(this)
 
-        rvAdapter.setOnClickListener(object : TVAdapter.ClickListener {
+        rvAdapter.setOnClickListener(object : DataTVAdapter.ClickListener {
             override fun onItemClick(data: TV, view: View) {
                 val intent = Intent(this@SearchActivity, DetailTVActivity::class.java)
                 intent.putExtra(DetailTVActivity.EXTRA_ID, data.id)
@@ -68,7 +68,7 @@ class SearchActivity : AppCompatActivity() {
             adapter = rvAdapter
         }
 
-        movieDataViewModel.getTvShow(false).observe(this, Observer { list ->
+        dataViewModel.getDataTV(false).observe(this, Observer { list ->
             if (list.isNotEmpty()) {
                 rvAdapter.setData(list)
                 isNotFound(false)
@@ -79,9 +79,9 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun setMovieList() {
-        val rvAdapter = DataAdapter(this)
+        val rvAdapter = DataMovieAdapter(this)
 
-        rvAdapter.setOnItemClickListener(object : DataAdapter.ClickListener {
+        rvAdapter.setOnItemClickListener(object : DataMovieAdapter.ClickListener {
             override fun onItemClick(data: Movie, v: View) {
                 val intent = Intent(this@SearchActivity, DetailMoviesActivity::class.java)
                 intent.putExtra(DetailMoviesActivity.EXTRA_ID_STRING, data.id)
@@ -95,7 +95,7 @@ class SearchActivity : AppCompatActivity() {
             adapter = rvAdapter
         }
 
-        movieDataViewModel.getMovies(false).observe(this, Observer { list ->
+        dataViewModel.getDataMovies(false).observe(this, Observer { list ->
             if (list.isNotEmpty()) {
                 rvAdapter.setData(list)
                 isNotFound(false)
@@ -116,7 +116,7 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun setSwipeRefresh() {
-        movieDataViewModel.isLoading.observe(this, Observer { loading ->
+        dataViewModel.isLoading.observe(this, Observer { loading ->
             swipeRefresh.isRefreshing = loading
         })
 

@@ -1,5 +1,7 @@
 package com.fahrul.rackmovies.model
 
+import com.fahrul.rackmovies.lokal.TV
+
 
 data class TVList(
     var page: String?,

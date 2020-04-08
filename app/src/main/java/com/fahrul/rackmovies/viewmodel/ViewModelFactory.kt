@@ -1,4 +1,4 @@
-package com.fahrul.rackmovies.util
+package com.fahrul.rackmovies.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

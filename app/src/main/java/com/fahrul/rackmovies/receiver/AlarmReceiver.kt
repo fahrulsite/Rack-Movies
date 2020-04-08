@@ -13,6 +13,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import com.fahrul.rackmovies.Helper
 import com.fahrul.rackmovies.R
 import com.fahrul.rackmovies.api.ApiClient
 import com.fahrul.rackmovies.model.MovieList
@@ -38,7 +39,7 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     private val apiService = ApiClient.create()
-    private val apiKey = ApiClient.API_KEY
+    private val apiKey = Helper.API_KEY
 
     override fun onReceive(context: Context, intent: Intent) {
         // This method is called when the BroadcastReceiver is receiving an Intent broadcast.

@@ -6,10 +6,10 @@ import android.util.Log
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.bumptech.glide.Glide
+import com.fahrul.rackmovies.Helper
 import com.fahrul.rackmovies.R
-import com.fahrul.rackmovies.api.ApiClient
-import com.fahrul.rackmovies.model.Movie
-import com.fahrul.rackmovies.model.lokal.FavoriteDatabase
+import com.fahrul.rackmovies.lokal.Movie
+import com.fahrul.rackmovies.lokal.FavoriteDb
 import com.fahrul.rackmovies.ui.AppWidget
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 class StackRemoteViewsFactory(val context: Context) :
     RemoteViewsService.RemoteViewsFactory {
 
-    private val favoriteDatabase = FavoriteDatabase.getInstance(context)
+    private val favoriteDatabase = FavoriteDb.getInstance(context)
     private var movieList = mutableListOf<Movie>()
 
 
@@ -59,7 +59,7 @@ class StackRemoteViewsFactory(val context: Context) :
 
         val bitmap = Glide.with(context)
             .asBitmap()
-            .load(ApiClient.POSTER_URL + movieList[position].poster_path)
+            .load(Helper.POSTER_URL + movieList[position].poster_path)
             .submit()
             .get()
 

@@ -6,31 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.fahrul.rackmovies.Helper
 import com.fahrul.rackmovies.R
 import com.fahrul.rackmovies.api.ApiClient
-import com.fahrul.rackmovies.model.Movie
+import com.fahrul.rackmovies.lokal.Movie
 import kotlinx.android.synthetic.main.item_recycler.view.*
 
 
-class DataAdapter(private val context: Context?) :
-    RecyclerView.Adapter<DataAdapter.CardViewViewHolder>() {
-    private val movieList = ArrayList<Movie>()
-
-    companion object {
-        internal var clickListener: ClickListener? = null
-    }
-
-    fun setOnItemClickListener(clickListener: ClickListener) {
-        DataAdapter.clickListener = clickListener
-    }
-
-    interface ClickListener {
-        fun onItemClick(data: Movie, v: View)
-    }
+class DataMovieAdapter(private val context: Context?) :
+    RecyclerView.Adapter<DataMovieAdapter.CardViewViewHolder>() {
+    private val data = ArrayList<Movie>()
 
     fun setData(items: ArrayList<Movie>) {
-        movieList.clear()
-        movieList.addAll(items)
+        data.clear()
+        data.addAll(items)
         notifyDataSetChanged()
     }
 
@@ -39,17 +28,17 @@ class DataAdapter(private val context: Context?) :
         return CardViewViewHolder(view)
     }
 
-    override fun getItemCount(): Int = movieList.size
+    override fun getItemCount(): Int = data.size
 
     override fun onBindViewHolder(holder: CardViewViewHolder, position: Int) {
-        holder.bind(movieList[position])
+        holder.bind(data[position])
     }
 
     class CardViewViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(film: Movie) {
             with(view) {
                 Glide.with(context)
-                    .load(ApiClient.POSTER_URL + film.poster_path)
+                    .load(Helper.POSTER_URL + film.poster_path)
                     .into(img_poster)
 
                 tvName.text = film.title
@@ -61,5 +50,16 @@ class DataAdapter(private val context: Context?) :
                 }
             }
         }
+    }
+    companion object {
+        internal var clickListener: ClickListener? = null
+    }
+
+    fun setOnItemClickListener(clickListener: ClickListener) {
+        DataMovieAdapter.clickListener = clickListener
+    }
+
+    interface ClickListener {
+        fun onItemClick(data: Movie, v: View)
     }
 }

@@ -5,11 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
 
-class ViewPagerAdapter(
-    fm: FragmentManager,
-    private val fragmentList: List<Fragment>,
-    private val titleList: List<String>
-) : FragmentPagerAdapter(fm) {
+class ViewPagerAdapter(fm: FragmentManager, private val fragmentList: List<Fragment>, private val titleList: List<String>) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         return fragmentList[position]
     }
@@ -21,5 +17,4 @@ class ViewPagerAdapter(
     override fun getPageTitle(position: Int): CharSequence? {
         return titleList[position]
     }
-
 }

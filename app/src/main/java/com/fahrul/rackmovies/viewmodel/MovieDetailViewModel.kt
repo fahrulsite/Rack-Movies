@@ -57,7 +57,7 @@ class MovieDetailViewModel(val context: Context, val id: String) : ViewModel() {
     private fun setTvShowDetail() {
         isLoading.postValue(true)
 
-        service.getTvShowDetail(id, apiKey).enqueue(object : Callback<TV> {
+        service.getTvDetail(id, apiKey).enqueue(object : Callback<TV> {
             override fun onFailure(call: Call<TV>, t: Throwable) {
                 isLoading.postValue(false)
                 isError.postValue(true)

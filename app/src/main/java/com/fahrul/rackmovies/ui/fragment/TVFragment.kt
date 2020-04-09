@@ -45,19 +45,19 @@ class TVFragment : Fragment() {
     private fun search(){
         btnSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query != null ){
-                    dataViewModel.setTvShow(query)
+                if (query.isNullOrEmpty() ){
+                    setList()
                 } else{
-                    dataViewModel.setTvShow(null)
+                    dataViewModel.setTvShow(query)
                 }
                 return true
             }
 
             override fun onQueryTextChange(query: String?):Boolean{
                 if (query != null ){
-                    dataViewModel.setTvShow(query)
+                    setList()
                 } else{
-                    dataViewModel.setTvShow(null)
+                    dataViewModel.setTvShow(query)
                 }
                 return true
             }
@@ -81,8 +81,11 @@ class TVFragment : Fragment() {
         }
 
         dataViewModel.getDataTV(true).observe(this, Observer { list ->
-            if (list.isNotEmpty()) {
+            if (list.isEmpty()) {
+                isNotFound(true)
+            } else{
                 rvAdapter.setData(list)
+                isNotFound(false)
             }
         })
     }
@@ -97,4 +100,13 @@ class TVFragment : Fragment() {
         }
     }
 
+    private fun isNotFound(boolean: Boolean) {
+        if (boolean) {
+            rvTV.visibility = View.GONE
+            notFound.visibility = View.VISIBLE
+        } else {
+            rvTV.visibility = View.VISIBLE
+            notFound.visibility = View.GONE
+        }
+    }
 }

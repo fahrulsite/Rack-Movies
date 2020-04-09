@@ -32,6 +32,8 @@ class DataViewModel(context: Context) : ViewModel() {
     private val favTV = MutableLiveData<ArrayList<TV>>()
 
     var isLoading = MutableLiveData<Boolean>()
+    var isError = MutableLiveData<Boolean>()
+
     internal fun getDataMovies(init: Boolean): MutableLiveData<ArrayList<Movie>> {
         if (dataMovie.value == null && init) {
             setMovies(null)
@@ -43,7 +45,7 @@ class DataViewModel(context: Context) : ViewModel() {
         isLoading.postValue(true)
 
         val getApiService: Call<MovieList> = if (queryTitle != null) {
-            service.getMovie(apiKey, queryTitle)
+            service.getMovieSearch(apiKey, queryTitle)
         } else {
             service.getMovie(apiKey)
         }
@@ -51,11 +53,13 @@ class DataViewModel(context: Context) : ViewModel() {
         getApiService.enqueue(object : Callback<MovieList> {
             override fun onFailure(call: Call<MovieList>, t: Throwable) {
                 isLoading.postValue(false)
+                isError.postValue(true)
             }
 
             override fun onResponse(call: Call<MovieList>, response: Response<MovieList>) {
                 if (response.isSuccessful) {
                     isLoading.postValue(false)
+                    isError.postValue(false)
                     val list = response.body() as MovieList
                     dataMovie.postValue(list.results)
                 }
@@ -66,7 +70,6 @@ class DataViewModel(context: Context) : ViewModel() {
     internal fun getFavoriteMovie(): MutableLiveData<ArrayList<Movie>> {
         GlobalScope.launch {
             val list = favDb?.movieDao()?.getMovies()
-
             favMovie.postValue(list as ArrayList<Movie>?)
         }
 
@@ -85,22 +88,19 @@ class DataViewModel(context: Context) : ViewModel() {
         isLoading.postValue(true)
 
         val getApiService: Call<TVList> = if (queryTitle != null) {
-            service.getTvShow(apiKey, queryTitle)
+            service.getTvSearch(apiKey, queryTitle)
         } else {
-            service.getTVShow(apiKey)
+            service.getTV(apiKey)
         }
 
         getApiService.enqueue(object : Callback<TVList> {
             override fun onFailure(call: Call<TVList>, t: Throwable) {
                 isLoading.postValue(false)
             }
-
             override fun onResponse(call: Call<TVList>, response: Response<TVList>) {
                 if (response.isSuccessful) {
                     isLoading.postValue(false)
-
                     val list = response.body() as TVList
-
                     dataTV.postValue(list.results)
                 }
             }
@@ -112,7 +112,6 @@ class DataViewModel(context: Context) : ViewModel() {
             val list = favDb?.tvShowDao()?.getTvShow()
             favTV.postValue(list as ArrayList<TV>?)
         }
-
         return favTV
     }
 }

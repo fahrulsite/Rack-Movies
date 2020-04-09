@@ -47,49 +47,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
-        val searchView = menu.findItem(R.id.menu_search).actionView as SearchView
-
-        selectedType = TYPE_MOVIE
-//        tabLayout.addOnTabSelectedListener(object :
-//            TabLayout.BaseOnTabSelectedListener<TabLayout.Tab> {
-//            override fun onTabReselected(p0: TabLayout.Tab?) {
-//            }
-//
-//            override fun onTabUnselected(p0: TabLayout.Tab?) {
-//                searchView.queryHint = getString(R.string.search_movie)
-//                selectedType = TYPE_MOVIE
-//            }
-//
-//            override fun onTabSelected(tab: TabLayout.Tab?) {
-//                when (tab?.position) {
-//                    0 -> {
-//                        searchView.queryHint = getString(R.string.search_movie)
-//                        selectedType = TYPE_MOVIE
-//                    }
-//                    else -> {
-//                        searchView.queryHint = getString(R.string.search_tv_show)
-//                        selectedType = TYPE_TV_SHOW
-//                    }
-//                }
-//            }
-//        })
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query != null) {
-                    val intent = Intent(this@MainActivity, SearchActivity::class.java)
-
-                    intent.putExtra(EXTRA_QUERY, query)
-                    intent.putExtra(EXTRA_TYPE, selectedType)
-
-                    startActivity(intent)
-                }
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean = false
-
-        })
         return true
     }
 

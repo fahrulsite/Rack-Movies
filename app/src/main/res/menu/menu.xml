@@ -3,12 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.fahrul.rackmovies.MainActivityMainActivity">
     <item
-        android:id="@+id/menu_search"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:title="@string/search"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="ifRoom|collapseActionView" />
-    <item
         android:id="@+id/icSetting"
         app:showAsAction="never"
         android:title="@string/Setting"/>

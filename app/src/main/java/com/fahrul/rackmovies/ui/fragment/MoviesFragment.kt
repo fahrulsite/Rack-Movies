@@ -23,7 +23,9 @@ import com.fahrul.rackmovies.ui.activity.MainActivity
 import com.fahrul.rackmovies.ui.activity.SearchActivity
 import com.fahrul.rackmovies.viewmodel.ViewModelFactory
 import com.fahrul.rackmovies.viewmodel.DataViewModel
+import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.fragment_movies.*
+import kotlinx.android.synthetic.main.fragment_movies.swipeRefresh
 import retrofit2.http.Query
 
 
@@ -57,18 +59,17 @@ class MoviesFragment : Fragment() {
     private fun search(){
         btnSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query == null ){
+                if (query.isNullOrEmpty() ){
                     setList()
                 } else{
                     dataViewModel.setMovies(query)
-
                 }
                 return true
             }
 
             override fun onQueryTextChange(query: String?):Boolean{
-                if (query == null ){
-                    dataViewModel.setMovies(null)
+                if (query.isNullOrEmpty()){
+                    setList()
                 } else{
                     dataViewModel.setMovies(query)
                 }
@@ -96,6 +97,9 @@ class MoviesFragment : Fragment() {
         dataViewModel.getDataMovies(true).observe(this, Observer { list ->
             if (list.isNotEmpty()) {
                 rvAdapter.setData(list)
+                if (list.isEmpty()) {
+                    Toast.makeText(context, getString(R.string.notfound), Toast.LENGTH_SHORT).show()
+                }
             }
         })
     }

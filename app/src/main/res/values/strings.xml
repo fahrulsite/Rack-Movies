@@ -28,9 +28,9 @@
     <string name="Setting">Setting</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="judul_movie">Judul Movie</string>
     <string name="judulTV">Judul TV</string>
+    <string name="notfound">Data tidak ditemukan :(</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

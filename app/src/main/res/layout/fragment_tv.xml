@@ -44,6 +44,13 @@
             tools:layout_editor_absoluteX="188dp"
             tools:layout_editor_absoluteY="352dp"
             tools:listitem="@layout/item_recycler" />
+
+        <TextView
+            android:id="@+id/notFound"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/notfound"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 

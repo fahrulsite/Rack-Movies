@@ -13,8 +13,8 @@ import com.fahrul.rackmovies.R
 import com.fahrul.rackmovies.adapter.FavoriteTVAdapter
 import com.fahrul.rackmovies.lokal.TV
 import com.fahrul.rackmovies.ui.activity.DetailTVActivity
-import com.fahrul.rackmovies.viewmodel.ViewModelFactory
 import com.fahrul.rackmovies.viewmodel.DataViewModel
+import com.fahrul.rackmovies.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_favorite_tv.*
 
 /**

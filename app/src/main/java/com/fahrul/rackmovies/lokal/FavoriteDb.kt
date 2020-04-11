@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.fahrul.rackmovies.Helper
 
-@Database(entities = [Movie::class, TV::class], version = 1)
+@Database(entities = [Movie::class, TV::class], version = 1, exportSchema = false)
 abstract class FavoriteDb : RoomDatabase() {
     abstract fun movieDao(): DatabaseDAO.FavoriteMovie
     abstract fun tvShowDao(): DatabaseDAO.FavoriteTvShow

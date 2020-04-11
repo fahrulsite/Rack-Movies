@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 class StackRemoteViewsFactory(val context: Context) :
     RemoteViewsService.RemoteViewsFactory {
 
-    private val favoriteDatabase = FavoriteDb.getInstance(context)
+    private val favDb = FavoriteDb.getInstance(context)
     private var movieList = mutableListOf<Movie>()
 
 
@@ -37,7 +37,7 @@ class StackRemoteViewsFactory(val context: Context) :
         Log.d("stackWidget", "data onchange")
 
         GlobalScope.launch {
-            val list = favoriteDatabase?.movieDao()?.getMovies()
+            val list = favDb?.movieDao()?.getMovies()
 
             if (list != null) {
                 movieList.clear()

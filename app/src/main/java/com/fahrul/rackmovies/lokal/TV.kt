@@ -24,5 +24,11 @@ data class TV(
     val first_air_date: String?,
 
     @ColumnInfo
-    val overview: String?
+    val overview: String?,
+
+    @ColumnInfo
+    val backdrop_path: String?,
+
+    @ColumnInfo
+    val vote_average: String?
 ) : Parcelable

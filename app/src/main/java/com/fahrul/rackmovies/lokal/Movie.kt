@@ -24,6 +24,12 @@ data class Movie(
     val release_date: String,
 
     @ColumnInfo
-    val overview: String?
+    val overview: String?,
+
+    @ColumnInfo
+    val vote_average: String?,
+
+    @ColumnInfo
+    val backdrop_path: String?
 
 ) : Parcelable

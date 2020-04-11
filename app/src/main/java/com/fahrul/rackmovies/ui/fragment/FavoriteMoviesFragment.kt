@@ -14,8 +14,8 @@ import com.fahrul.rackmovies.R
 import com.fahrul.rackmovies.adapter.FavoriteMovieAdapter
 import com.fahrul.rackmovies.lokal.Movie
 import com.fahrul.rackmovies.ui.activity.DetailMoviesActivity
-import com.fahrul.rackmovies.viewmodel.ViewModelFactory
 import com.fahrul.rackmovies.viewmodel.DataViewModel
+import com.fahrul.rackmovies.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_favorite_movies.*
 
 /**

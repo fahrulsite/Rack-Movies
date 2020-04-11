@@ -1,8 +1,5 @@
 package com.fahrul.rackmovies.ui.fragment
 
-import android.app.SearchManager
-import android.content.ComponentName
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,14 +15,9 @@ import com.fahrul.rackmovies.R
 import com.fahrul.rackmovies.adapter.DataMovieAdapter
 import com.fahrul.rackmovies.lokal.Movie
 import com.fahrul.rackmovies.ui.activity.DetailMoviesActivity
-import com.fahrul.rackmovies.ui.activity.MainActivity
-import com.fahrul.rackmovies.ui.activity.SearchActivity
-import com.fahrul.rackmovies.viewmodel.ViewModelFactory
 import com.fahrul.rackmovies.viewmodel.DataViewModel
-import kotlinx.android.synthetic.main.activity_search.*
+import com.fahrul.rackmovies.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_movies.*
-import kotlinx.android.synthetic.main.fragment_movies.swipeRefresh
-import retrofit2.http.Query
 
 
 /**
@@ -97,9 +88,10 @@ class MoviesFragment : Fragment() {
         dataViewModel.getDataMovies(true).observe(this, Observer { list ->
             if (list.isNotEmpty()) {
                 rvAdapter.setData(list)
-                if (list.isEmpty()) {
-                    Toast.makeText(context, getString(R.string.notfound), Toast.LENGTH_SHORT).show()
-                }
+                isError(false)
+            } else{
+                isError(true)
+                Toast.makeText(context, getString(R.string.notfound), Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -111,6 +103,14 @@ class MoviesFragment : Fragment() {
 
         swipeRefresh.setOnRefreshListener {
             dataViewModel.setMovies(null)
+        }
+    }
+
+    private fun isError(boolean: Boolean) {
+        if (boolean) {
+            rvMovie.visibility = View.GONE
+        } else {
+            rvMovie.visibility = View.VISIBLE
         }
     }
 }

@@ -6,9 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.fahrul.rackmovies.Helper
 import com.fahrul.rackmovies.api.ApiClient
+import com.fahrul.rackmovies.lokal.FavoriteDb
 import com.fahrul.rackmovies.lokal.Movie
 import com.fahrul.rackmovies.lokal.TV
-import com.fahrul.rackmovies.lokal.FavoriteDb
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Call

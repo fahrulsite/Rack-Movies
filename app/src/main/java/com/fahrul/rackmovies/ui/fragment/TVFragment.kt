@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,9 +15,11 @@ import com.fahrul.rackmovies.R
 import com.fahrul.rackmovies.adapter.DataTVAdapter
 import com.fahrul.rackmovies.lokal.TV
 import com.fahrul.rackmovies.ui.activity.DetailTVActivity
-import com.fahrul.rackmovies.viewmodel.ViewModelFactory
 import com.fahrul.rackmovies.viewmodel.DataViewModel
+import com.fahrul.rackmovies.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_tv.*
+import kotlinx.android.synthetic.main.fragment_tv.btnSearch
+import kotlinx.android.synthetic.main.fragment_tv.swipeRefresh
 
 
 /**
@@ -54,7 +57,7 @@ class TVFragment : Fragment() {
             }
 
             override fun onQueryTextChange(query: String?):Boolean{
-                if (query != null ){
+                if (query.isNullOrEmpty()){
                     setList()
                 } else{
                     dataViewModel.setTvShow(query)
@@ -81,11 +84,12 @@ class TVFragment : Fragment() {
         }
 
         dataViewModel.getDataTV(true).observe(this, Observer { list ->
-            if (list.isEmpty()) {
-                isNotFound(true)
-            } else{
+            if (list.isNotEmpty()) {
                 rvAdapter.setData(list)
-                isNotFound(false)
+                isError(false)
+            } else{
+                isError(true)
+                Toast.makeText(context, getString(R.string.notfound), Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -96,17 +100,16 @@ class TVFragment : Fragment() {
         })
 
         swipeRefresh.setOnRefreshListener {
-            dataViewModel.setMovies(null)
+            dataViewModel.setTvShow(null)
         }
     }
 
-    private fun isNotFound(boolean: Boolean) {
+    private fun isError(boolean: Boolean) {
         if (boolean) {
             rvTV.visibility = View.GONE
-            notFound.visibility = View.VISIBLE
         } else {
             rvTV.visibility = View.VISIBLE
-            notFound.visibility = View.GONE
         }
     }
+
 }

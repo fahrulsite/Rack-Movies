@@ -6,17 +6,11 @@ import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.fahrul.rackmovies.R
-import com.fahrul.rackmovies.adapter.ViewPagerAdapter
-import com.fahrul.rackmovies.ui.fragment.MoviesFragment
-import com.fahrul.rackmovies.ui.fragment.TVFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.tabs.TabLayout
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -42,7 +36,6 @@ class MainActivity : AppCompatActivity() {
 
         navView.setupWithNavController(navController)
     }
-
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

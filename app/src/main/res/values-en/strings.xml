@@ -8,7 +8,7 @@
     <string name="overview">Overview</string>
     <string name="date">date</string>
     <string name="date_release">Date Released</string>
-    <string name="lang">language</string>
+    <string name="lang">Language</string>
     <string name="favorite">Favorite</string>
     <string name="empty_list">Empty List</string>
     <string name="added_to_favorite">Added to favorite</string>
@@ -18,10 +18,9 @@
     <string name="detail_text_remider">Reminder showing the movie that released today at 8 AM</string>
     <string name="open_reminder">Open Reminder</string>
     <string name="release_reminder">Release Reminder</string>
-    <string name="search">search</string>
     <string name="search_movie">Search movie ...</string>
     <string name="search_tv_show">Search tv show ...</string>
-    <string name="favorit_movie">Favorit Movie</string>
+    <string name="favorit_movie">Favorite Movie</string>
     <string name="come_back">Come back to the app.</string>
     <string name="has_released">has released today.</string>
     <string name="new_release">New Movie Release</string>
@@ -29,5 +28,6 @@
     <string name="judul_movie">Judul Movie</string>
     <string name="judulTV">Judul TV</string>
     <string name="notfound">Data tidak ditemukan :(</string>
+
 
 </resources>

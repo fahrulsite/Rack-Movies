@@ -2,10 +2,10 @@ package com.fahrul.rackmovies.ui.fragment
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.fahrul.rackmovies.R
 import com.fahrul.rackmovies.adapter.ViewPagerAdapter
 import kotlinx.android.synthetic.main.fragment_favorite.*

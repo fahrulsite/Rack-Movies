@@ -45,17 +45,14 @@
             android:name=".service.StackWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <activity android:name=".ui.activity.SettingActivity" />
-        <activity android:name=".ui.activity.SearchActivity" />
-        <activity android:name=".ui.activity.DetailTVActivity" />
-        <activity
-            android:name=".ui.activity.FavoriteActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".ui.activity.DetailMoviesActivity" />
+        <activity android:name=".ui.activity.SettingActivity"/>
+        <activity android:name=".ui.activity.DetailTVActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.activity.DetailMoviesActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

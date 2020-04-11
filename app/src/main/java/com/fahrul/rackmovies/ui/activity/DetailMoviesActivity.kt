@@ -9,10 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.fahrul.rackmovies.Helper
 import com.fahrul.rackmovies.R
-import com.fahrul.rackmovies.api.ApiClient
 import com.fahrul.rackmovies.lokal.Movie
-import com.fahrul.rackmovies.viewmodel.ViewModelFactory
 import com.fahrul.rackmovies.viewmodel.MovieDetailViewModel
+import com.fahrul.rackmovies.viewmodel.ViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_detail_movies.*
 
@@ -27,39 +26,36 @@ class DetailMoviesActivity : AppCompatActivity() {
     private var isFavorite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val actionBar = supportActionBar
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_movies)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = " "
 
         if (intent.getStringExtra(EXTRA_ID_STRING) != null) {
             filmId = intent.getStringExtra(EXTRA_ID_STRING)!!
         }
 
-        movieDetailViewModel = ViewModelProvider(
-            this,
-            ViewModelFactory()
-                .viewModelFactory { MovieDetailViewModel(this, filmId) }).get(
+        movieDetailViewModel = ViewModelProvider(this, ViewModelFactory()
+            .viewModelFactory { MovieDetailViewModel(this, filmId) }).get(
             MovieDetailViewModel::class.java
         )
 
-        movieDetailViewModel.getMovieDetail().observe(this, Observer { filmModel ->
-            this.movieModel = filmModel
-            actionBar?.let {
-                it.title = movieModel.title
-                it.setDisplayHomeAsUpEnabled(true)
-            }
-
+        movieDetailViewModel.getMovieDetail().observe(this, Observer { model ->
+            this.movieModel = model
             Glide.with(this)
                 .load(Helper.POSTER_URL + movieModel.poster_path)
                 .into(img_poster)
-
+            Glide.with(this)
+                .load(Helper.BACKDROP_URL + movieModel.backdrop_path)
+                .centerCrop()
+                .into(imgBackdrop)
             tvName.text = movieModel.title
             tvDate.text = movieModel.release_date
             tvDesc.text = movieModel.overview
+            tvRate.text = movieModel.vote_average
         })
         checkFavorite(filmId)
-
         btnFav.setOnClickListener {
             if (isFavorite) {
                 movieDetailViewModel.deleteFavoriteMovie(movieModel.id)
@@ -73,7 +69,7 @@ class DetailMoviesActivity : AppCompatActivity() {
     }
 
     private fun showMessage(message: String) {
-        Snackbar.make(viewParent, message, Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(tvLy, message, Snackbar.LENGTH_SHORT).show()
     }
 
     private fun checkFavorite(id: String) {

@@ -33,7 +33,6 @@ class FavoriteProvider : ContentProvider() {
 
     override fun onCreate(): Boolean {
         favoriteDb = FavoriteDb.getInstance(context!!)
-
         return true
     }
 

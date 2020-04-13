@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.fahrul.rackmovies.R
-import com.fahrul.rackmovies.receiver.AlarmReceiver
+import com.fahrul.rackmovies.notif.AlarmReceiver
 import kotlinx.android.synthetic.main.activity_setting.*
 import java.util.*
 
@@ -17,8 +17,8 @@ class SettingActivity : AppCompatActivity() {
 
     companion object {
         const val SETTING_PREF = "setting_pref"
-        const val DAILY_REMINDER = "daily_reminder"
-        const val RELEASE_REMINDER = "release_reminder"
+        const val setReminder = "daily_reminder"
+        const val setRelease = "release_reminder"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,10 +36,10 @@ class SettingActivity : AppCompatActivity() {
     }
 
     private fun setSwitchListener() {
-        switchDailyReminder.isChecked = settingPreference.getBoolean(DAILY_REMINDER, false)
-        switchReleaseReminder.isChecked = settingPreference.getBoolean(RELEASE_REMINDER, false)
+        swReminder.isChecked = settingPreference.getBoolean(setReminder, false)
+        swRelease.isChecked = settingPreference.getBoolean(setRelease, false)
 
-        switchDailyReminder.setOnCheckedChangeListener { _, isChecked ->
+        swReminder.setOnCheckedChangeListener { _, isChecked ->
             val editor = settingPreference.edit()
 
             if (isChecked) {
@@ -48,17 +48,17 @@ class SettingActivity : AppCompatActivity() {
                 calendar.set(Calendar.MINUTE, 0)
                 calendar.set(Calendar.SECOND, 0)
 
-                alarmReceiver.setAlarm(this, calendar.timeInMillis, AlarmReceiver.ALARM_ID_REMINDER)
-                editor.putBoolean(DAILY_REMINDER, true)
+                alarmReceiver.setAlarm(this, calendar.timeInMillis, AlarmReceiver.idReminder)
+                editor.putBoolean(setReminder, true)
             } else {
-                alarmReceiver.cancelAlarm(this, AlarmReceiver.ALARM_ID_REMINDER)
-                editor.putBoolean(DAILY_REMINDER, false)
+                alarmReceiver.cancelAlarm(this, AlarmReceiver.idReminder)
+                editor.putBoolean(setReminder, false)
             }
 
             editor.apply()
         }
 
-        switchReleaseReminder.setOnCheckedChangeListener { _, isChecked ->
+        swRelease.setOnCheckedChangeListener { _, isChecked ->
             val editor = settingPreference.edit()
 
             if (isChecked) {
@@ -67,11 +67,11 @@ class SettingActivity : AppCompatActivity() {
                 calendar.set(Calendar.MINUTE, 0)
                 calendar.set(Calendar.SECOND, 0)
 
-                alarmReceiver.setAlarm(this, calendar.timeInMillis, AlarmReceiver.ALARM_ID_RELEASE)
-                editor.putBoolean(RELEASE_REMINDER, true)
+                alarmReceiver.setAlarm(this, calendar.timeInMillis, AlarmReceiver.idRelease)
+                editor.putBoolean(setRelease, true)
             } else {
-                alarmReceiver.cancelAlarm(this, AlarmReceiver.ALARM_ID_RELEASE)
-                editor.putBoolean(RELEASE_REMINDER, false)
+                alarmReceiver.cancelAlarm(this, AlarmReceiver.idRelease)
+                editor.putBoolean(setRelease, false)
             }
 
             editor.apply()

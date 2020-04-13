@@ -26,7 +26,7 @@ class MovieDetailViewModel(val context: Context, val id: String) : ViewModel() {
     private val favDb = FavoriteDb.getInstance(context)
 
     private val movieDetail = MutableLiveData<Movie>()
-    private val tvShowDetail = MutableLiveData<TV>()
+    private val tvDetail = MutableLiveData<TV>()
     private var isFavorite = MutableLiveData<Boolean>()
 
     var isLoading = MutableLiveData<Boolean>()
@@ -70,7 +70,7 @@ class MovieDetailViewModel(val context: Context, val id: String) : ViewModel() {
 
                     val tvShow = response.body()
 
-                    tvShowDetail.postValue(tvShow)
+                    tvDetail.postValue(tvShow)
                 }
             }
         })
@@ -86,7 +86,7 @@ class MovieDetailViewModel(val context: Context, val id: String) : ViewModel() {
         return isFavorite
     }
 
-    internal fun checkIsFavoriteTvShow(id: String): LiveData<Boolean> {
+    internal fun checkIsFavoriteTv(id: String): LiveData<Boolean> {
         GlobalScope.launch {
             if (favDb?.tvShowDao()?.getTvShow(id) != null) {
                 isFavorite.postValue(true)
@@ -103,7 +103,7 @@ class MovieDetailViewModel(val context: Context, val id: String) : ViewModel() {
         }
     }
 
-    internal fun setFavoriteTvShow(tvShow: TV) {
+    internal fun setFavoriteTv(tvShow: TV) {
         GlobalScope.launch {
             favDb?.tvShowDao()?.insertTvShow(tvShow)
             isFavorite.postValue(true)
@@ -117,7 +117,7 @@ class MovieDetailViewModel(val context: Context, val id: String) : ViewModel() {
         }
     }
 
-    internal fun deleteFavoriteTvShow(id: String) {
+    internal fun deleteFavoriteTv(id: String) {
         GlobalScope.launch {
             favDb?.tvShowDao()?.deleteTvShow(id)
             isFavorite.postValue(false)
@@ -131,10 +131,10 @@ class MovieDetailViewModel(val context: Context, val id: String) : ViewModel() {
         return movieDetail
     }
 
-    internal fun getTvShowDetail(): MutableLiveData<TV> {
-        if (tvShowDetail.value == null) {
+    internal fun getTvDetail(): MutableLiveData<TV> {
+        if (tvDetail.value == null) {
             setTvShowDetail()
         }
-        return tvShowDetail
+        return tvDetail
     }
 }

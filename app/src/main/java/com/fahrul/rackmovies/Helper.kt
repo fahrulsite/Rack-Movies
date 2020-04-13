@@ -1,7 +1,6 @@
 package com.fahrul.rackmovies
 
 object Helper {
-    const val AUTHORITY = "com.fahrul.rackmovies"
     const val DB_NAME = "favorite.db"
     const val TABLE_MOVIE = "favMovie"
     const val TABLE_TV_SHOW = "favTV"

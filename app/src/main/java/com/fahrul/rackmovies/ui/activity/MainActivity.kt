@@ -13,15 +13,6 @@ import com.fahrul.rackmovies.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-    companion object {
-        const val EXTRA_QUERY = "extra_query"
-        const val EXTRA_TYPE = "extra_type"
-        const val TYPE_MOVIE = "Movie"
-        const val TYPE_TV_SHOW = "Tv show"
-    }
-
-    private var selectedType: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

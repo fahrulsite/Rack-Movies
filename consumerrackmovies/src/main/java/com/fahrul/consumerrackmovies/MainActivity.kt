@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.fahrul.consumerrackmovies.adapter.MovieAdapter
-import com.fahrul.consumerrackmovies.model.Movie
+import com.fahrul.consumerrackmovies.adapter.Adapter
+import com.fahrul.consumerrackmovies.model.Favorit
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val rvAdapter = MovieAdapter(this@MainActivity)
+        val rvAdapter = Adapter(this@MainActivity)
 
         if (getMovieList() != null) {
             rvAdapter.setData(getMovieList()!!)
@@ -27,9 +27,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getMovieList(): ArrayList<Movie>? {
+    private fun getMovieList(): ArrayList<Favorit>? {
         val cursor = contentResolver?.query(
-            DatabaseContract.FavoriteMovieColumns.CONTENT_URI,
+            DbContract.FavoriteMovieColumns.CONTENT_URI,
             null,
             null,
             null,
@@ -45,23 +45,23 @@ class MainActivity : AppCompatActivity() {
         return list
     }
 
-    private fun cursorToListMovie(cursor: Cursor): ArrayList<Movie> {
-        val list = ArrayList<Movie>()
+    private fun cursorToListMovie(cursor: Cursor): ArrayList<Favorit> {
+        val list = ArrayList<Favorit>()
 
         while (cursor.moveToNext()) {
-            DatabaseContract.FavoriteMovieColumns.let {
+            DbContract.FavoriteMovieColumns.let {
                 val id =
-                    cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseContract.FavoriteMovieColumns.ID))
+                    cursor.getInt(cursor.getColumnIndexOrThrow(DbContract.FavoriteMovieColumns.ID))
                 val title =
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.FavoriteMovieColumns.TITLE))
+                    cursor.getString(cursor.getColumnIndexOrThrow(DbContract.FavoriteMovieColumns.TITLE))
                 val posterPath =
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.FavoriteMovieColumns.POSTER_PATH))
+                    cursor.getString(cursor.getColumnIndexOrThrow(DbContract.FavoriteMovieColumns.POSTER_PATH))
                 val release =
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.FavoriteMovieColumns.RELEASE_DATE))
+                    cursor.getString(cursor.getColumnIndexOrThrow(DbContract.FavoriteMovieColumns.RELEASE_DATE))
                 val overview =
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.FavoriteMovieColumns.OVERVIEW))
+                    cursor.getString(cursor.getColumnIndexOrThrow(DbContract.FavoriteMovieColumns.OVERVIEW))
 
-                list.add(Movie(id.toString(), title, posterPath, release, overview))
+                list.add(Favorit(id.toString(), title, posterPath, release, overview))
             }
         }
 

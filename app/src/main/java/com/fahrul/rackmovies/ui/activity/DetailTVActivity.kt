@@ -1,5 +1,6 @@
 package com.fahrul.rackmovies.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.fahrul.rackmovies.R
 import com.fahrul.rackmovies.lokal.TV
 import com.fahrul.rackmovies.viewmodel.MovieDetailViewModel
 import com.fahrul.rackmovies.viewmodel.ViewModelFactory
+import com.fahrul.rackmovies.widget.AppWidget
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_detail_tv.*
 import kotlinx.android.synthetic.main.activity_detail_tv.btnFav
@@ -20,12 +22,11 @@ import kotlinx.android.synthetic.main.activity_detail_tv.tvDesc
 import kotlinx.android.synthetic.main.activity_detail_tv.tvName
 
 class DetailTVActivity : AppCompatActivity() {
-
     companion object {
         val EXTRA_ID = "extra_id"
     }
 
-    private lateinit var tvDetailViewModel: MovieDetailViewModel
+    private lateinit var detailViewModel: MovieDetailViewModel
     private lateinit var tvModel: TV
     private var filmId = ""
     private var isFavorite = false
@@ -41,14 +42,14 @@ class DetailTVActivity : AppCompatActivity() {
             filmId = intent.getStringExtra(EXTRA_ID)!!
         }
 
-        tvDetailViewModel = ViewModelProvider(
+        detailViewModel = ViewModelProvider(
             this,
             ViewModelFactory()
                 .viewModelFactory { MovieDetailViewModel(this, filmId) }).get(
             MovieDetailViewModel::class.java
         )
 
-        tvDetailViewModel.getTvShowDetail().observe(this, Observer { model ->
+        detailViewModel.getTvDetail().observe(this, Observer { model ->
             this.tvModel = model
 
             Glide.with(this)
@@ -67,11 +68,12 @@ class DetailTVActivity : AppCompatActivity() {
         checkFavorite(filmId)
 
         btnFav.setOnClickListener {
+            sendWidget()
             if (isFavorite) {
-                tvDetailViewModel.deleteFavoriteTvShow(tvModel.id)
+                detailViewModel.deleteFavoriteTv(tvModel.id)
                 showMessage(getString(R.string.removed_from_favorite))
             } else {
-                tvDetailViewModel.setFavoriteTvShow(tvModel)
+                detailViewModel.setFavoriteTv(tvModel)
                 showMessage(getString(R.string.added_to_favorite))
             }
             checkFavorite(tvModel.id)
@@ -82,8 +84,14 @@ class DetailTVActivity : AppCompatActivity() {
         Snackbar.make(tvLy, message, Snackbar.LENGTH_SHORT).show()
     }
 
+    private fun sendWidget(){
+        val intent = Intent(this, AppWidget::class.java)
+        intent.action = AppWidget.UPDATE_WIDGET
+        this.sendBroadcast(intent)
+    }
+
     private fun checkFavorite(id: String) {
-        tvDetailViewModel.checkIsFavoriteTvShow(id).observe(this, Observer { isFavorite ->
+        detailViewModel.checkIsFavoriteTv(id).observe(this, Observer { isFavorite ->
             this.isFavorite = if (isFavorite) {
                 btnFav.setImageResource(R.drawable.ic_favorite_red_24dp)
                 true

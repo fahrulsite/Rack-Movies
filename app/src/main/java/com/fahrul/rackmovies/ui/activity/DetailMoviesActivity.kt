@@ -1,6 +1,7 @@
 package com.fahrul.rackmovies.ui.activity
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import com.fahrul.rackmovies.R
 import com.fahrul.rackmovies.lokal.Movie
 import com.fahrul.rackmovies.viewmodel.MovieDetailViewModel
 import com.fahrul.rackmovies.viewmodel.ViewModelFactory
+import com.fahrul.rackmovies.widget.AppWidget
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_detail_movies.*
 
@@ -20,7 +22,7 @@ class DetailMoviesActivity : AppCompatActivity() {
         val EXTRA_ID_STRING = "extra_id_string"
     }
 
-    private lateinit var movieDetailViewModel: MovieDetailViewModel
+    private lateinit var detailViewModel: MovieDetailViewModel
     private lateinit var movieModel: Movie
     private var filmId = ""
     private var isFavorite = false
@@ -36,12 +38,12 @@ class DetailMoviesActivity : AppCompatActivity() {
             filmId = intent.getStringExtra(EXTRA_ID_STRING)!!
         }
 
-        movieDetailViewModel = ViewModelProvider(this, ViewModelFactory()
+        detailViewModel = ViewModelProvider(this, ViewModelFactory()
             .viewModelFactory { MovieDetailViewModel(this, filmId) }).get(
             MovieDetailViewModel::class.java
         )
 
-        movieDetailViewModel.getMovieDetail().observe(this, Observer { model ->
+        detailViewModel.getMovieDetail().observe(this, Observer { model ->
             this.movieModel = model
             Glide.with(this)
                 .load(Helper.POSTER_URL + movieModel.poster_path)
@@ -57,11 +59,12 @@ class DetailMoviesActivity : AppCompatActivity() {
         })
         checkFavorite(filmId)
         btnFav.setOnClickListener {
+            sendWidget()
             if (isFavorite) {
-                movieDetailViewModel.deleteFavoriteMovie(movieModel.id)
+                detailViewModel.deleteFavoriteMovie(movieModel.id)
                 showMessage(getString(R.string.removed_from_favorite))
             } else {
-                movieDetailViewModel.setFavoriteMovie(movieModel)
+                detailViewModel.setFavoriteMovie(movieModel)
                 showMessage(getString(R.string.added_to_favorite))
             }
             checkFavorite(movieModel.id)
@@ -72,8 +75,14 @@ class DetailMoviesActivity : AppCompatActivity() {
         Snackbar.make(tvLy, message, Snackbar.LENGTH_SHORT).show()
     }
 
+    private fun sendWidget(){
+        val intent = Intent(this, AppWidget::class.java)
+        intent.action = AppWidget.UPDATE_WIDGET
+        this.sendBroadcast(intent)
+    }
+
     private fun checkFavorite(id: String) {
-        movieDetailViewModel.checkIsFavoriteMovie(id).observe(this, Observer { isFavorite ->
+        detailViewModel.checkIsFavoriteMovie(id).observe(this, Observer { isFavorite ->
             this.isFavorite = if (isFavorite) {
                 btnFav.setImageResource(R.drawable.ic_favorite_red_24dp)
                 true

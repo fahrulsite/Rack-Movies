@@ -39,7 +39,7 @@
         app:layout_constraintRight_toRightOf="@id/guideLine"/>
 
     <Switch
-        android:id="@+id/switchReleaseReminder"
+        android:id="@+id/swRelease"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintRight_toRightOf="parent"
@@ -83,7 +83,7 @@
         app:layout_constraintRight_toRightOf="@id/guideLine"/>
 
     <Switch
-        android:id="@+id/switchDailyReminder"
+        android:id="@+id/swReminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintRight_toRightOf="parent"

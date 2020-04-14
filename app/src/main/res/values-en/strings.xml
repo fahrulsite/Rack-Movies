@@ -21,13 +21,16 @@
     <string name="search_movie">Search movie ...</string>
     <string name="search_tv_show">Search tv show ...</string>
     <string name="favorit_movie">Favorite Movie</string>
-    <string name="come_back">Come back to the app.</string>
+    <string name="come_back">I miss you</string>
     <string name="has_released">has released today.</string>
     <string name="new_release">New Movie Release</string>
     <string name="Setting">Setting</string>
-    <string name="judul_movie">Judul Movie</string>
-    <string name="judulTV">Judul TV</string>
-    <string name="notfound">Data tidak ditemukan :(</string>
+    <string name="judul_movie">Movie Titlte</string>
+    <string name="judulTV">TV Title</string>
+    <string name="notfound">Data Not found :(</string>
+    <string name="ratemovie">Rating</string>
+    <string name="text_daily">Daily reminder to return to app at 7 AM</string>
+    <string name="rate">Rate</string>
 
 
 </resources>

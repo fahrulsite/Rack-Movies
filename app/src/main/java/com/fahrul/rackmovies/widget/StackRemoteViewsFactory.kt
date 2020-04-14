@@ -11,6 +11,7 @@ import com.fahrul.rackmovies.Helper
 import com.fahrul.rackmovies.R
 import com.fahrul.rackmovies.lokal.Movie
 import com.fahrul.rackmovies.lokal.FavoriteDb
+import com.fahrul.rackmovies.lokal.TV
 import com.fahrul.rackmovies.widget.AppWidget
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -20,8 +21,8 @@ class StackRemoteViewsFactory(val context: Context) :
 
     private val favDb = FavoriteDb.getInstance(context)
     private var mWidgetItems = ArrayList<String>()
-    private var favContainer = ArrayList<Movie>()
-    private var movieList = mutableListOf<Movie>()
+    private var favMovie = ArrayList<Movie>()
+    private var favTV = ArrayList<TV>()
 
 
     override fun onCreate() {
@@ -39,21 +40,27 @@ class StackRemoteViewsFactory(val context: Context) :
     override fun onDataSetChanged() {
         Log.d("stackWidget", "data onchange")
 
-        if(favContainer.size != 0 && mWidgetItems.size != 0){
-            favContainer = java.util.ArrayList()
+        if(favMovie.size != 0 && mWidgetItems.size != 0 && favTV.size !=0){
+            favMovie= java.util.ArrayList()
+            favTV = java.util.ArrayList()
             mWidgetItems = java.util.ArrayList()
         }
 
         val identityToken = Binder.clearCallingIdentity()
-        favContainer.addAll(favDb!!.movieDao().getMovies())
+        favMovie.addAll(favDb!!.movieDao().getMovies())
+        favTV.addAll(favDb!!.tvShowDao().getTvShow())
         Binder.restoreCallingIdentity(identityToken)
 
 
-        for (item in favContainer){
+        for (item in favMovie){
+            mWidgetItems.add(Helper.POSTER_URL+"${item.poster_path}")
+        }
+        for (item in favTV){
             mWidgetItems.add(Helper.POSTER_URL+"${item.poster_path}")
         }
 
-        Log.d("broadcast", "favcontainer $favContainer")
+        Log.d("broadcast", "favmovie $favMovie")
+        Log.d("broadcast", "favtv $favTV")
         Log.d("broadcast", "mwidget $mWidgetItems")
 
     }

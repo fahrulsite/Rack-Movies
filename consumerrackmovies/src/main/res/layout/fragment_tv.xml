@@ -1,0 +1,15 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="188dp"
+        tools:layout_editor_absoluteY="352dp"
+        tools:listitem="@layout/item_recycler" />
+</FrameLayout>

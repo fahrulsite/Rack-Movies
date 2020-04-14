@@ -4,4 +4,7 @@
     <string name="title">Title</string>
     <string name="date">Date</string>
     <string name="overview">Overview</string>
+    <string name="tv">TV</string>
+    <string name="movie">Movie</string>
+
 </resources>

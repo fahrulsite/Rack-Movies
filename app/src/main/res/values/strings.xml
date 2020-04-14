@@ -13,22 +13,24 @@
     <string name="empty_list">Daftar Kosong</string>
     <string name="added_to_favorite">Berhasil menambahkan di favorit</string>
     <string name="removed_from_favorite">Berhasil menghapus dari favorit</string>
-    <string name="search_movie">Search movie ...</string>
-    <string name="search_tv_show">Search tv show ...</string>
+    <string name="search_movie">Pencarian film ...</string>
+    <string name="search_tv_show">Pencarian program tv ...</string>
     <string name="open_reminder">Open Reminder</string>
     <string name="change_language">Ganti Bahasa</string>
     <string name="daily_reminder">Pengingat Harian</string>
-    <string name="come_back">Come back to the app.</string>
+    <string name="come_back">Aku kangen nih...</string>
     <string name="new_release">film baru telah rilis</string>
     <string name="has_released">ada film baru sekarang</string>
-    <string name="release_reminder">Release Reminder</string>
     <string name="detail_text_remider">Menampilkan update baru setiap jam 8 pagi</string>
     <string name="favorit_movie">Favorit Movie</string>
     <string name="Setting">Pengaturan</string>
     <string name="judul_movie">Judul Movie</string>
     <string name="judulTV">Judul TV</string>
     <string name="notfound">Data tidak ditemukan :(</string>
-    <string name="ratemovie">Rating</string>
+    <string name="ratemovie">Peringkat</string>
+    <string name="release_reminder">Pengingat saat rilis</string>
+    <string name="text_daily">Pengingat setiap jam 7 pagi</string>
+    <string name="rate">Rate</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

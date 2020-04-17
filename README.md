@@ -1,6 +1,5 @@
 # Rack-Movies
 Dicoding Final Submission - Belajar Fundamental Aplikasi Android
-Fitur:
 - Show the Detail Movie
 - Show the Detail TV Series
 - Search Movie & TV Series by Name

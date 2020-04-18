@@ -1,5 +1,6 @@
 # Rack-Movies
 Dicoding Final Submission - Belajar Fundamental Aplikasi Android
+For APK file download [here](https://github.com/fahrulsite/Rack-Movies/raw/master/rackMovies.apk)
 - Show the Detail Movie
 - Show the Detail TV Series
 - Search Movie & TV Series by Name

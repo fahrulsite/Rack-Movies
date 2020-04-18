@@ -1,6 +1,6 @@
 # Rack-Movies
 Dicoding Final Submission - Belajar Fundamental Aplikasi Android
-For APK file download [here](https://github.com/fahrulsite/Rack-Movies/raw/master/rackMovies.apk)
+
 - Show the Detail Movie
 - Show the Detail TV Series
 - Search Movie & TV Series by Name
@@ -9,6 +9,8 @@ For APK file download [here](https://github.com/fahrulsite/Rack-Movies/raw/maste
 - Notification when new movie released
 - Support 2 Language (Indonesian & English)
 - Widget for Favorite
+
+For APK file download [here](https://github.com/fahrulsite/Rack-Movies/raw/master/rackMovies.apk)
 
 ![movie](https://user-images.githubusercontent.com/37899902/79579777-3c47c980-80f2-11ea-9733-3a6f945d1590.jpg)    ![judul](https://user-images.githubusercontent.com/37899902/79579773-3baf3300-80f2-11ea-84fc-f34b8d4a8fba.jpg)
 
